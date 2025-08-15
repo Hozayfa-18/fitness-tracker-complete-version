@@ -1,93 +1,47 @@
-# Gruppe G
+# Installationsanleitung
+Genaue Erläuterung, wie das entwickelte System vollkommen funktionsfähig auf einem Rechner in Betrieb genommen werden kann.
+
+Eingereicht wurden drei Dateien, die zur Installation notwendig sind. Darunter befinden sich zwei Tar-Dateien für die Docker-Container des Frontends und Backends sowie eine docker-compose.yml
+
+Die Dateien frontend.tar, backend.tar und docker-compose.yml müssen sich für die Installation im selben Verzeichnis auf dem Host-System befinden.
+
+## Installationsschritte:
+
+Terminal öffnen: Öffnen Sie das Terminal im Verzeichnis, in dem sich die Dateien befinden.
+Docker starten: Starten Sie Docker Desktop, die Docker Engine oder eine vergleichbare Docker-Installation auf dem Host-System.
+Frontend-Image laden: Führen Sie im Terminal den Befehl “docker load -i frontend.tar” aus.
+Backend-Image laden: Führen Sie im Terminal den Befehl “docker load -i backend.tar” aus.
+Container starten: Führen Sie im Terminal den Befehl “docker compose up” aus.
+Im Terminalfenster können nun der Status der vier laufenden Container beobachtet werden. Die zwei zusätzlichen Container sind postgres und pgadmin. Die Boot-Sequenz ist abgeschlossen, wenn im Backend-Container eine Zeile mit den Worten „Started BackendApplication…“ angezeigt wird.
+
+Das Webinterface für das System ist anschließend lokal im Browser unter http://localhost:80 erreichbar.
+
+## SEHR WICHTIG:
+
+Der Port für die PostgreSQL-Datenbank ist 5431. Dieser Port muss unbedingt frei sein, da das Backend sonst nicht starten kann.
+Der Standardport für PostgreSQL ist 5432, aber Ich habe ihn auf 5431 geändert, um Konflikte mit eventuell bereits vorhandenen PostgreSQL-Installationen auf Ihrem Gerät zu vermeiden. 
+Da Sie nur die bereitgestellten Images ausführen und nicht den Quellcode bearbeiten, können Sie die Datei application.properties nicht anpassen.
+
+Der Port 8888 soll ebenfalls für pgadmin frei sein.
+
+Der Port 8080 soll ebenfalls für Backend frei sein.
 
 
 
-## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# Bedienungsanleitung
+Genaue Erläuterung, wie das entwickelte System zu bedienen ist.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Wenn man “http://localhost:80” aufruft, landet man automatisch auf dem Login-Fenster der Anwendung.
 
-## Add your files
+Dort erhält man die Möglichkeit, sich mit einem vorhandenen Benutzerkonto einzuloggen (in dem man den Benutzernamen und das dazugehörige Passwort eingibt). Außerdem erhält man durch den Button “Registriere dich jetzt” die Möglichkeit, ein neues Benutzerkonto anzulegen, bzw. einen neuen Benutzer (Admin oder normaler Benutzer) zu registrieren. Nachdem man sich registriert hat, gelangt man wieder zum Login-Fenster und muss sich einloggen.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Nachdem man sich eingeloggt hat, gelangt man zum Fenster für die Zwei-Faktor-Authentifizierung. Der Code für die Zwei-Faktor-Authentifizierung wird per E-Mail von der E-Mail Adresse: sep.move1@gmail.com versendet. Der Code wird ebenfalls in der jeweiligen Entwicklungsumgebung (z.B. Intellij)  in der Konsole durch das Backend ausgegeben.
 
-```
-cd existing_repo
-git remote add origin https://git.uni-due.de/sep/wintersemester_2024-25/gruppe-e-h/gruppe-g.git
-git branch -M main
-git push -uf origin main
-```
+Außerdem existiert ein Supercode (“000000”) mit dem man sich jederzeit authentifizieren kann, ohne den per E-Mail erhaltenen Code eingeben zu müssen.
 
-## Integrate with your tools
+Nachdem man sich authentifiziert hat, gelangt man zur Startseite und kann auf die restlichen Funktionen des Systems zugreifen.
 
-- [ ] [Set up project integrations](https://git.uni-due.de/sep/wintersemester_2024-25/gruppe-e-h/gruppe-g/-/settings/integrations)
+Admins und normale Benutzer können sich ihr eigenes Benutzerprofil und die Teilnehmerliste ansehen. Zudem kann man in der Teilnehmerliste nach Benutzern suchen und sich das Profil von anderen Benutzern ansehen, wenn man den jeweiligen Benutzernamen anklickt.
 
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Nur normale Benutzer können Aktivitäten erstellen. Nachdem man eine Aktivität erstellt hat, gelangt man zu der dazugehörigen Aktivitätsstatistik. Auf dem Fenster der Aktivitätsliste kann ein Benutzer alle seine Aktivitäten in einer Tabelle sehen. Diese Tabelle kann man anhand mehrerer Attribute auf- oder absteigend sortieren.
