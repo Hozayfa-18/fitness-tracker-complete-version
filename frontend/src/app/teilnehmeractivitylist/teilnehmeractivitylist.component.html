@@ -1,0 +1,51 @@
+<!--<div class="activity-list">-->
+<div class="container">
+  <h1>Ihre Aktivitäten</h1>
+
+  <!-- Fehleranzeige -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <!-- Nachricht bei leeren Aktivitäten -->
+  <div *ngIf="!activities.length && !error" class="empty-message">
+    <p>Sie haben noch keine Aktivitäten.</p>
+  </div>
+
+  <!-- Liste der Aktivitäten -->
+  <div *ngIf="activities.length > 0" class="scroll-container" >
+    <div>
+      <input type="text" id="searchInput" placeholder="Suche nach Activitätsname..." (input)="onSearch($event)">
+    </div>
+    <div>
+      <table id="activityTable">
+        <thead>
+        <tr>
+          <th (click)="toggleSort('id')">ID</th>
+          <th (click)="toggleSort('activityName')">Name</th>
+          <th (click)="toggleSort('activityType')">Type</th>
+          <th (click)="toggleSort('activityDate')">Datum</th>
+          <th (click)="toggleSort('totalDuration')">Dauer</th>
+          <th (click)="toggleSort('totalDistance')">Distanz</th>
+          <th (click)="toggleSort('totalElevationGain')">erklommene Höhe</th>
+          <th (click)="toggleSort('averageSpeed')">Durchschnitts- geschwindigkeit</th>
+          <th (click)="toggleSort('totalCalories')">verbrannte Kalorien</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let activity of filteredActivities">
+          <td>{{ activity.id }}</td>
+          <td>{{ activity.activityName }}</td>
+          <td>{{ activity.activityType }}</td>
+          <td>{{ activity.activityDate! * 1000 | date: 'dd.MM.yyyy HH:mm' }}</td>
+          <td>{{ activity.totalDuration }}</td>
+          <td>{{ activity.totalDistance }}</td>
+          <td>{{ activity.averageSpeed }}</td>
+          <td>{{ activity.totalElevationGain }}</td>
+          <td>{{ activity.totalCalories }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

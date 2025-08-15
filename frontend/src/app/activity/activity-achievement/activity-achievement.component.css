@@ -1,0 +1,80 @@
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  min-width: 600px;
+  /*max-height: 85vh;*/
+  margin: 60px auto;
+  padding: 20px;
+  /*background: linear-gradient(to bottom, #004c99,#3C91B3) ; !* Add background to make it more distinct *!*/
+  background: linear-gradient(to right, #001f3f, #003f7f);
+  /*background: linear-gradient(135deg, #001f3f, #0056b3);*/
+  border-radius: 10px; /* Round corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for emphasis */
+}
+/*.levels-container{*/
+/*  !*border-radius: 50px;*!*/
+/*  !*border-color: gold;*!*/
+/*  padding: 20px;*/
+/*}*/
+
+h1 {
+  color: #e9f7ff; /* Setzt die Farbe auf reines Schwarz */
+  font-weight: bolder; /* Setzt den Text fett, um die Sichtbarkeit zu erhöhen */
+  text-align: center; /* Zentriert die Überschrift */
+  margin-bottom: 20px; /* Fügt Abstand zur Tabelle hinzu */
+}
+h3 {
+  color: #e9f7ff; /* Setzt die Farbe auf reines Schwarz */
+  font-weight: bolder; /* Setzt den Text fett, um die Sichtbarkeit zu erhöhen */
+  text-align: left; /* Zentriert die Überschrift */
+  margin-bottom: 20px; /* Fügt Abstand zur Tabelle hinzu */
+}
+.achievement-list{
+
+  display: inherit;
+}
+.achievement-levels{
+  display: ruby;
+}
+
+.milestone-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  font-size: 14px;
+  padding: 10px 15px;
+  cursor: unset;
+  /*border-radius: 5px;*/
+  /*transition: background-color 0.3s ease, color 0.3s ease;*/
+}
+
+.not-achieved {
+  background-color: lightgray;
+  color: black;
+}
+
+.first-level {
+  /*background-color: #8BC34A;*/
+  background-color: #218838;
+  color: gold;
+}
+
+.second-level {
+  /*background-color: #28a745 ;*/
+  background-color: #218838 ;
+  color: gold;
+}
+
+.third-level {
+  background-color: #218838;
+  color: gold;
+}
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}

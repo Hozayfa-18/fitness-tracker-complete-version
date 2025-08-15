@@ -1,0 +1,26 @@
+
+.background-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #87CEEB, #B0E0E6, #ffffff);
+  position: relative;
+  font-family: Arial, sans-serif;
+
+}
+
+/* Sicherstellen, dass der Inhalt unterhalb der Navbar beginnt */
+.content {
+  padding-top: 80px; /* Höhe der Navbar */
+}
+
+/* Navbar fixieren, sodass sie oben bleibt */
+app-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+

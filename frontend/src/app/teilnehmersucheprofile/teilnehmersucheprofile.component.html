@@ -1,0 +1,231 @@
+<div class="profile-wrapper">
+  <div class="profile-container">
+    <div *ngFor="let user of users" class="profile-container">
+      <div class="cover-photo">
+        <img
+          [src]="profileImageUrl || './assets/Bilder/SEP-Move_Logo_Minimalistic.png'"
+          alt="Cover Photo"
+          (error)="profileImageUrl='./assets/Bilder/SEP-Move_Logo_Minimalistic.png'">
+      </div>
+      <div class="profile-header">
+        <img
+          [src]="profileImageUrl || './assets/Bilder/SEP-Move_Logo_Minimalistic.png'"
+          alt="Profilbild"
+          class="profile-picture"
+          (error)="profileImageUrl='./assets/Bilder/SEP-Move_Logo_Minimalistic.png'" />
+        <div class="profile-info">
+          <h1 class="username">{{ user.username }}</h1>
+        </div>
+      </div>
+      <div class="profile-details">
+        <section class="bio-section">
+          <h2>Name</h2>
+          <p class="bio">{{ user.firstName }} {{ user.lastName }}</p>
+        </section>
+        <section class="info-section">
+          <h2>Information</h2>
+          <ul class="info-list">
+            <li><strong>Email:</strong> {{ user.email }}</li>
+            <li><strong>Rolle:</strong> {{ user.role }}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Größe:</strong> {{ user.height }}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Gewicht:</strong> {{ user.weight }}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Geschlecht:</strong> {{ user.gender}}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Geburtsdatum:</strong> {{ user.birthDate | date:'dd.MM.y' }}</li>
+          </ul>
+          <br>
+          <h2 *ngIf="user.role !== 'admin'">Aktivitäten Zusammenfassung</h2>
+          <ul class="info-list">
+            <li *ngIf="user.role !== 'admin'"><strong>Aktivitäten Anzahl:</strong> {{ activitiesCount }} activities</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Aktivitäten Gesamtdauer:</strong> {{ totalDurationInHours | number:'1.2-2'}} <span *ngIf="totalDurationInHours">hours</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Aktivitäten Gesamtdistanz:</strong> {{ totalDistanceInKm | number:'1.2-2'}} <span *ngIf="totalDistanceInKm">km</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Insgesamt verbrannte Kalorien:</strong> {{ totalCaloriesInK | number:'1.2-2'}} <span *ngIf="totalCaloriesInK">kcal</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Gesamthöhengewinn:</strong> {{ totalElevationGainInM | number:'1.2-2'}} <span *ngIf="totalElevationGainInM">meters</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Durchschnittsgeschwindigkeit:</strong> {{ averageSpeedInKmh | number:'1.2-2'}} <span *ngIf="averageSpeedInKmh">km/h</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Maximale Durchschnittsgeschwindigkeit:</strong> {{ maxAverageSpeedInKmh | number:'1.2-2'}} <span *ngIf="maxAverageSpeedInKmh">km/h</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Aktivitäten Gesamtzahl der Likes:</strong> {{ totalLikes}} <span *ngIf="totalLikes">Likes</span></li>
+          </ul>
+        </section>
+      </div>
+      <div *ngIf="user.role !== 'admin'" class="container">
+        <h1>Aktivitäten</h1>
+
+        <!-- Fehleranzeige -->
+        <div *ngIf="error" class="error-message">
+          {{ error }}
+        </div>
+
+
+        <!-- Nachricht bei leeren Aktivitäten -->
+        <div *ngIf="!activities.length && !error" class="empty-message">
+          <p>Noch keine Aktivitäten.</p>
+        </div>
+
+        <!-- Liste der Aktivitäten -->
+          <div *ngIf="activities.length > 0">
+            <input type="text" id="searchInput" placeholder="Suche nach Activitätsname..." (input)="onSearch($event)">
+          </div>
+        <div class = "error-message">
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+        </div>
+          <div *ngIf="activities.length > 0" class="scroll-container" >
+          <div>
+            <table id="activityTable">
+              <thead>
+              <tr>
+                <th (click)="toggleSort('id')">ID</th>
+                <th (click)="toggleSort('activityName')">Name</th>
+                <th (click)="toggleSort('activityType')">Type</th>
+                <th (click)="toggleSort('activityDate')">Datum</th>
+                <th (click)="toggleSort('totalDuration')">Dauer</th>
+                <th (click)="toggleSort('totalDistance')">Distanz</th>
+                <th (click)="toggleSort('totalElevationGain')">erklommene Höhe</th>
+                <th (click)="toggleSort('averageSpeed')">Durchschnitts- geschwindigkeit</th>
+                <th (click)="toggleSort('totalCalories')">verbrannte Kalorien</th>
+                <th (click)="toggleSort('totalLikes')">Likes</th>
+                <th>Like</th>
+                <th>Sichtbarkeit</th>
+                <th>Kommentieren</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let activity of filteredActivities">
+                <td>{{ activity.id }}</td>
+                <td>{{ activity.activityName }}</td>
+                <td>{{ activity.activityType }}</td>
+                <td>{{ activity.activityDate! * 1000 | date: 'dd.MM.yyyy HH:mm' }}</td>
+                <td>{{ activity.totalDuration }}</td>
+                <td>{{ activity.totalDistance }}</td>
+                <td>{{ activity.averageSpeed }}</td>
+                <td>{{ activity.totalElevationGain }}</td>
+                <td>{{ activity.totalCalories }}</td>
+                <td>{{ activity.likeCount }}</td>
+
+                <td>
+                  <button *ngIf="!activity.isLiked" (click)="likeActivity(activity)">Like</button>
+                  <button *ngIf="activity.isLiked" (click)="unlikeActivity(activity)">Unlike</button>
+                </td>
+                <td>
+                  <span>{{ activity.visibility === 'PUBLIC' ? 'Öffentlich' : activity.visibility === 'FRIENDS' ? 'Nur Freunde' : 'Privat' }}</span>
+                </td>
+                <td>
+                  <button (click)="toggleCommentSection(activity.id!)">Aktivität kommentieren</button>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bereich für Kommentare -->
+      <div *ngIf="selectedActivityId" class="comment-section">
+        <h3 class="comment-section-title">Kommentare für Aktivität {{ selectedActivityId }}</h3>
+
+        <!-- Fehlermeldung anzeigen, wenn die Aktivität privat ist und der Benutzer nicht berechtigt -->
+        <div *ngIf="error" class="error-message-comment">
+          {{ error }}
+        </div>
+
+        <textarea
+          class="comment-input"
+          [(ngModel)]="newComment"
+          placeholder="Schreiben Sie einen Kommentar...">
+        </textarea>
+        <button class="add-comment-button" (click)="addComment()">Kommentar hinzufügen</button>
+
+        <!-- Liste der Kommentare -->
+        <ul class="comment-list">
+          <li class="comment-item" *ngFor="let comment of comments">
+            <strong>{{ comment.username }}</strong>: {{ comment.content }}
+
+            <!-- Kommentar löschen nur anzeigen, wenn der Benutzer berechtigt ist -->
+            <button
+              class="delete-comment-button"
+              (click)="deleteComment(comment.id, selectedActivityId)">
+              Löschen
+            </button>
+
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Freundesliste anzeigen -->
+      <div class="freundesliste-container" *ngIf="freundesliste && freundesliste.length > 0">
+        <h2>Freundesliste</h2>
+        <ul>
+          <li *ngFor="let friend of freundesliste">
+            <div class="friend-item">
+              <!-- Benutzername des Freundes anzeigen -->
+              <span>{{ friend.username }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Wenn keine Freunde gefunden wurden -->
+      <div class="freundesliste-container" *ngIf="freundesliste && freundesliste.length === 0">
+        <p class="no-friends-message">Dieser Benutzer hat noch keine Freunde oder die Freundesliste ist privat.</p>
+      </div>
+
+<!--      Achivement-Teil-->
+      <div>
+        <div class="container-achivement">
+          <h1>Erfolge 🏆</h1>
+
+          <!-- Fehleranzeige -->
+          <div *ngIf="error" class="error-message">
+            {{ error }}
+          </div>
+          <!--  🚶, 🏃‍, 🗻, 🚴‍♂️, 🥇️, 🥈, 🥉-->
+
+          <div *ngIf="!error">
+            <ul>
+              <h3>Spazieren </h3>
+              <li>
+                <button [ngClass]="firstLevelWalking ? 'first-level' : 'not-achieved' ">2 km erreicht 🥉 ️</button>
+                <button [ngClass]="secondLevelWalking ? 'second-level' : 'not-achieved' ">5 km erreicht 🥈</button>
+                <button [ngClass]="thirdLevelWalking ? 'third-level' : 'not-achieved' ">100 km insgesamt 🥇️</button>
+              </li>
+            </ul>
+            <ul>
+              <h3>Laufen </h3>
+              <li>
+                <button [ngClass]="firstLevelRunning ? 'first-level' : 'not-achieved' ">5 km erreicht 🥉</button>
+                <button [ngClass]="secondLevelRunning ? 'second-level' : 'not-achieved' ">10 km erreicht 🥈</button>
+                <button [ngClass]="thirdLevelRunning ? 'third-level' : 'not-achieved' ">50 km insgesamt 🥇️</button>
+              </li>
+            </ul>
+            <ul>
+              <h3>Wandern </h3>
+              <li>
+                <button [ngClass]="firstLevelHiking ? 'first-level' : 'not-achieved' ">10 km erreicht 🥉</button>
+                <button [ngClass]="secondLevelHiking ? 'second-level' : 'not-achieved' ">20 km erreicht 🥈</button>
+                <button [ngClass]="thirdLevelHiking ? 'third-level' : 'not-achieved' ">100 km insgesamt 🥇️</button>
+              </li>
+            </ul>
+            <ul>
+              <h3>Radfahren </h3>
+              <li>
+                <button [ngClass]="firstLevelCycling ? 'first-level' : 'not-achieved' ">50 km erreicht 🥉</button>
+                <button [ngClass]="secondLevelCycling ? 'second-level' : 'not-achieved' ">100 km erreicht 🥈</button>
+                <button [ngClass]="thirdLevelCycling ? 'third-level' : 'not-achieved' ">500 km insgesamt 🥇️</button>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

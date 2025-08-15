@@ -1,0 +1,633 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial, sans-serif';
+  background: linear-gradient(135deg, black, white);
+  color: #ffffff;
+  height: 100vh;
+}
+
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px;
+}
+.profile-container {
+  width: 90%;
+  max-width: 1000px;
+  min-width: 700px;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #001f3f, #0056b3);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cover-photo {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+}
+
+.cover-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 4px solid #0056b3;
+  object-fit: cover;
+  background-color: transparent;
+  margin-top: -100px;
+}
+
+.profile-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.username {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.edit-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s, transform 0.2s, color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #004c99;
+}
+
+.profile-details {
+  padding: 30px;
+  width: 100%;
+  color: #ffffff;
+  margin-bottom: -10px;
+}
+
+
+.bio-section,
+.info-section {
+  margin-bottom: 25px;
+}
+
+.bio-section h2,
+.info-section h2 {
+  margin-bottom: 15px;
+  color: #349dff;
+  font-size: 1.8em;
+}
+
+.bio {
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+}
+
+.info-list li {
+  margin-bottom: 12px;
+  font-size: 1.1em;
+}
+
+.info-list li strong {
+  color: #349dff;
+  font-size: 1.1em;
+}
+
+.info-list li a {
+  color: white;
+  text-decoration: none;
+}
+
+.info-list li a:hover {
+  text-decoration: underline;
+}
+
+
+
+.profile-container {
+  max-width: 90%;
+  padding: 15px;
+}
+
+.cover-photo {
+  height: 250px;
+}
+
+.profile-header {
+  padding: 25px;
+}
+
+.profile-picture {
+  width: 160px;
+  height: 160px;
+  margin-top: -80px;
+}
+
+.profile-info {
+  margin-top: 15px;
+}
+
+.username {
+  font-size: 2em;
+  margin-bottom: 12px;
+}
+
+.edit-button {
+  padding: 10px 20px;
+  font-size: 1em;
+}
+
+.profile-details {
+  padding: 20px;
+}
+
+.bio-section,
+.info-section {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.bio-section h2,
+.info-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 12px;
+}
+
+.bio {
+  font-size: 1em;
+}
+
+.info-list li {
+  font-size: 1em;
+}
+
+.info-list li strong {
+  font-size: 1em;
+}
+
+
+@media (max-width: 500px) {
+  .profile-wrapper {
+    padding: 20px;
+  }
+
+  .cover-photo {
+    height: 200px;
+  }
+
+  .profile-header {
+    padding: 20px;
+  }
+
+  .profile-picture {
+    width: 140px;
+    height: 140px;
+    margin-top: -70px;
+  }
+
+  .username {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  .edit-button {
+    padding: 9px 18px;
+    font-size: 0.95em;
+  }
+
+  .profile-details {
+    padding: 15px;
+  }
+
+  .bio-section h2,
+  .info-section h2 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+
+  .bio {
+    font-size: 1em;
+  }
+
+  .info-list li {
+    font-size: 0.95em;
+  }
+
+  .info-list li strong {
+    font-size: 0.95em;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: -10px;
+}
+
+.activity-list-button,
+.create-activity-button {
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.activity-list-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.create-activity-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.activity-list-button:hover {
+  background-color: #0056b3;
+}
+
+.create-activity-button:hover {
+  background-color: #1e7e34;
+}
+
+
+
+
+
+
+
+
+
+
+:root {
+  opacity: 0.8;
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  min-width: 600px;
+  height: auto;
+  margin: 60px auto;
+  padding: 20px;
+  background: linear-gradient(to right, #001f3f, #003f7f);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+h1 {
+  color: #e9f7ff;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px; /* Erhöht die Schriftgröße */
+  font-weight: bold; /* Beibehaltung der fetten Schrift */
+  text-align: center; /* Richtet den Text zentriert im Block aus */
+  margin-top: 10px; /* Beibehaltung des oberen Abstands */
+  width: fit-content; /* Block bleibt nur so breit wie nötig */
+  position: relative; /* Relativ zum Container positionieren */
+  margin-left: 60px; /* Verschiebt die Nachricht weiter nach rechts */
+}
+
+
+.empty-message {
+  color: #666;
+  text-align: center;
+}
+
+#searchInput {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+table {
+  width: 100%;
+  border-color: #004c99;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 3px solid #004c99;
+}
+
+th {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+tr:hover {
+  background-color: #e9f7ff;
+}
+.scroll-container {
+  max-height: 500px;
+  overflow: auto;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.freundesliste-container {
+  width: 100%;
+  max-width: 850px;
+  min-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(to right, #001f3f, #003f7f);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+.freundesliste-container h2 {
+  color: #e9f7ff;
+  font-size: 1.8em;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.freundesliste-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.friend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.friend-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.friend-item span {
+  font-size: 1.2em;
+  color: #e9f7ff;
+  font-weight: bold;
+}
+
+.friend-item button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.friend-item button:hover {
+  background-color: #0056b3;
+}
+
+.no-friends-message {
+  text-align: center;
+  color: #e9f7ff;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+/* Kommentarbereich */
+.comment-section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-height: 400px; /* Maximale Höhe für den Kommentarbereich */
+  overflow-y: auto; /* Scrollen erlauben, wenn die Kommentare den Bereich überschreiten */
+  width: 90%; /* Neu: Breiter Kommentarbereich */
+  max-width: 1200px; /* Optional: Maximale Breite setzen */
+  margin: 20px auto; /* Zentriert den Kommentarbereich */
+}
+
+/* Überschrift */
+.comment-section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
+
+/* Eingabefeld für Kommentare */
+.comment-input {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+/* Button zum Hinzufügen eines Kommentars */
+.add-comment-button {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-comment-button:hover {
+  background-color: #0056b3;
+}
+
+/* Liste der Kommentare */
+.comment-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Individuelle Kommentare */
+.comment-item {
+  margin-bottom: 8px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  word-wrap: break-word; /* Längere Wörter umbrechen */
+}
+
+/* Button zum Löschen eines Kommentars */
+.delete-comment-button {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #ff4d4d; /* Auffälliges Rot für Löschen */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.delete-comment-button:hover {
+  background-color: #cc0000; /* Etwas dunkleres Rot beim Hover */
+}
+
+.delete-comment-button:active {
+  background-color: #a30000; /* Noch dunkler beim Klick */
+}
+
+.delete-comment-button:disabled {
+  background-color: #f2a2a2; /* Helleres Rot für deaktivierte Buttons */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.error-message-comment {
+  color: red;
+  font-size: 16px; /* Erhöht die Schriftgröße */
+  font-weight: bold; /* Beibehaltung der fetten Schrift */
+  text-align: center; /* Richtet den Text zentriert im Block aus */
+  margin-top: 10px; /* Beibehaltung des oberen Abstands */
+  width: fit-content; /* Block bleibt nur so breit wie nötig */
+  position: relative; /* Relativ zum Container positionieren */
+  margin-left: 60px; /* Verschiebt die Nachricht weiter nach rechts */
+}
+
+/*Achivement-Teil-Anfang*/
+
+.container-achivement {
+  width: 100%;
+  max-width: 850px;
+  min-width: 600px;
+  /*max-height: 85vh;*/
+  margin: 60px auto;
+  padding: 20px;
+  /*background: linear-gradient(to bottom, #004c99,#3C91B3) ; !* Add background to make it more distinct *!*/
+  background: linear-gradient(to right, #001f3f, #003f7f);
+  /*background: linear-gradient(135deg, #001f3f, #0056b3);*/
+  border-radius: 10px; /* Round corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for emphasis */
+}
+
+h1 {
+  color: #e9f7ff; /* Setzt die Farbe auf reines Schwarz */
+  font-weight: bolder; /* Setzt den Text fett, um die Sichtbarkeit zu erhöhen */
+  text-align: center; /* Zentriert die Überschrift */
+  margin-bottom: 20px; /* Fügt Abstand zur Tabelle hinzu */
+}
+h3 {
+  color: #e9f7ff; /* Setzt die Farbe auf reines Schwarz */
+  font-weight: bolder; /* Setzt den Text fett, um die Sichtbarkeit zu erhöhen */
+  text-align: left; /* Zentriert die Überschrift */
+  margin-bottom: 10px; /* Fügt Abstand zur Tabelle hinzu */
+  margin-top: 20px;
+}
+.achievement-list{
+
+  display: inherit;
+}
+.achievement-levels{
+  display: ruby;
+}
+
+.milestone-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  font-size: 14px;
+  padding: 10px 15px;
+  cursor: unset;
+  /*border-radius: 5px;*/
+  /*transition: background-color 0.3s ease, color 0.3s ease;*/
+}
+
+.not-achieved {
+  background-color: lightgray;
+  color: black;
+}
+
+.first-level {
+  /*background-color: #8BC34A;*/
+  background-color: #218838;
+  color: gold;
+}
+
+.second-level {
+  /*background-color: #28a745 ;*/
+  background-color: #218838 ;
+  color: gold;
+}
+
+.third-level {
+  background-color: #218838;
+  color: gold;
+}
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+/*Achivement-Teil-End*/

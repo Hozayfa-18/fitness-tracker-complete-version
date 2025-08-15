@@ -1,0 +1,125 @@
+/* Container für das Formular */
+.container {
+  width: 100%;
+  max-width: 850px;
+  min-width: 600px;
+  max-height: 85vh;
+  margin: 60px auto;
+  padding: 20px;
+  /*background: linear-gradient(to bottom, #004c99,#3C91B3) ; !* Add background to make it more distinct *!*/
+  background: linear-gradient(to right, #001f3f, #003f7f);
+  /*background: linear-gradient(135deg, #001f3f, #0056b3);*/
+  border-radius: 10px; /* Round corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for emphasis */
+}
+
+h1 {
+  color: #e9f7ff; /* Setzt die Farbe auf reines Schwarz */
+  font-weight: bolder; /* Setzt den Text fett, um die Sichtbarkeit zu erhöhen */
+  text-align: center; /* Zentriert die Überschrift */
+  margin-bottom: 20px; /* Fügt Abstand zur Tabelle hinzu */
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.empty-message {
+  color: #666;
+  text-align: center;
+}
+
+/*.activity-form {*/
+/*  max-width: 600px;*/
+/*  width: 500px;*/
+/*  margin: 50px auto;*/
+/*  padding: 20px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 10px;*/
+/*  background: linear-gradient(to bottom, #001f3f, #003f7f);*/
+/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/* Styling der Formulargruppen */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Label-Styling */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Input-Felder und Dropdown-Styling */
+.form-group input[type="text"],
+.form-group select,
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Hover- und Fokus-Effekte */
+.form-group input[type="text"]:focus,
+.form-group select:focus,
+.form-group input[type="file"]:focus {
+  border-color: #66ccff;
+  outline: none;
+}
+
+/* Button-Styling */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover-Effekt für den Button */
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+/* Eigenschaften des deaktivierten Buttons */
+.submit-btn.disabled {
+  background-color: #ccc;  /* Grau für den inaktiven Zustand */
+  cursor: not-allowed;  /* Ändert den Cursor, um anzuzeigen, dass der Button nicht klickbar ist */
+  color: #666;          /* Textfarbe angepasst für Lesbarkeit */
+}
+.warnung{
+  background-color:  #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.success-message {
+  margin-top: 20px;
+  color: #00ff99;
+  font-size: 16px;
+  text-align: center;
+}
+
+.error-message {
+  margin-top: 20px;
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+

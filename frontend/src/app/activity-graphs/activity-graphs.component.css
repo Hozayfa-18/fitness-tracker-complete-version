@@ -1,0 +1,88 @@
+/* Container für Diagramme */
+.charts-container {
+  display: flex;
+  flex-direction: column; /* Diagramme untereinander anordnen */
+  gap: 30px; /* Abstand zwischen den Diagrammen */
+  width: 100%; /* Volle Breite des Containers */
+  align-items: center; /* Zentriere die Diagramme */
+  padding: 10px; /* Zusätzlicher Abstand für sauberes Layout */
+}
+
+.chart-item {
+  width: 90%; /* Breite des Diagramms passend machen */
+  max-width: 700px; /* Maximalbreite für große Bildschirme */
+  height: 400px; /* Höhe des Diagramms */
+  background-color: #ffffff; /* Heller Hintergrund für Kontrast */
+  border-radius: 12px; /* Abgerundete Ecken */
+  padding: 20px; /* Innenabstand */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* 3D-Schatten */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Zentriert das Diagramm */
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animationen */
+}
+
+.chart-item:hover {
+  transform: translateY(-5px) scale(1.02); /* Leichter Schwebeeffekt */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stärkerer Schatten bei Hover */
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Abgerundete Ecken für das Canvas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Schatten für Canvas */
+}
+
+/* Stil für Auswahlfelder */
+.selection select {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #54a5b4; /* Farbige Rahmen */
+  border-radius: 8px; /* Abgerundete Ecken */
+  background: linear-gradient(to right, #e0f7fa, #f9f9f9); /* Farbverlauf */
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.selection select:hover {
+  border-color: #7ebcc8;
+  background: linear-gradient(to right, #e0f7fa, #ffffff); /* Hellerer Hover-Effekt */
+}
+
+/* Verbesserter Stil für kleinere Geräte */
+@media (max-width: 768px) {
+  .chart-item {
+    height: auto; /* Höhe anpassen */
+    padding: 10px;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
+}
+
+/* Stil für Warnmeldungen */
+.info-message.warning {
+  background-color: #ffe5e5; /* Heller roter Hintergrund */
+  border: 1px solid #ff4d4d; /* Roter Rahmen */
+  color: #ff0000; /* Rote Schrift */
+  padding: 15px;
+  border-radius: 8px; /* Abgerundete Ecken */
+  margin: 20px 0; /* Abstand nach oben und unten */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Abstand zwischen Icon und Text */
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2); /* Leichter Schatten */
+}
+
+/* Stil für das Warn-Icon */
+.warning-icon {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff0000; /* Rote Farbe */
+  margin-right: 10px;
+}

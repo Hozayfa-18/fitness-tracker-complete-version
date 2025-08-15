@@ -1,0 +1,29 @@
+#services:
+ # postgres:
+  #  container_name: postgres
+   # image: docker.io/library/postgres:13.16
+    #environment:
+     # POSTGRES_USER: user
+      #POSTGRES_PASSWORD: pass
+      #POSTGRES_DB: test
+    #volumes:
+     # - postgres_data:/var/lib/postgresql/data
+    #ports:
+     # - 5431:5432
+    #restart: unless-stopped
+
+  #pgadmin:
+   # container_name: pgadmin
+    #image: docker.io/dpage/pgadmin4:latest
+    #environment:
+     # PGADMIN_DEFAULT_EMAIL: user@example.com
+     # PGADMIN_DEFAULT_PASSWORD: pass
+    #volumes:
+   #   - pgadmin_data:/var/lib/pgadmin
+   # ports:
+   #   - 8888:80
+   # restart: unless-stopped
+
+#volumes:
+#  postgres_data:
+#  pgadmin_data:

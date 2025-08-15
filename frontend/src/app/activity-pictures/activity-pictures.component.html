@@ -1,0 +1,75 @@
+<div class="activity-pictures-container">
+  <h2>GPS-Foto-Manager</h2>
+
+  <!-- Fehlermeldungen -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+
+  <!-- Auswahl der GPS-Koordinaten -->
+  <div class="form-group" *ngIf="gpsCoordinates.length > 0">
+    <label for="gps-coordinates">GPS-Koordinaten</label>
+    <select
+      id="gps-coordinates"
+      [(ngModel)]="selectedCoordinate"
+      name="selectedCoordinate"
+      required
+    >
+      <option value="" disabled>Koordinate auswählen</option>
+      <option *ngFor="let coordinate of gpsCoordinates" [value]="coordinate.id">
+        Lat: {{ coordinate.latitude }}, Lon: {{ coordinate.longitude }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Foto hochladen -->
+  <div class="form-group">
+    <label for="photo-upload">Foto hochladen</label>
+    <input
+      type="file"
+      id="photo-upload"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      name="photo"
+      required
+    />
+  </div>
+
+  <!-- Bildvorschau -->
+  <div class="form-group" *ngIf="previewUrl">
+    <label>Bildvorschau</label>
+    <img [src]="previewUrl" alt="Vorschau des hochgeladenen Bildes" class="image-preview" />
+  </div>
+
+  <!-- Bildunterschrift -->
+  <div class="form-group">
+    <label for="caption">Bildunterschrift</label>
+    <input
+      type="text"
+      id="caption"
+      [(ngModel)]="caption"
+      name="caption"
+      placeholder="Bildunterschrift eingeben"
+      required
+    />
+  </div>
+
+  <!-- Aktionen -->
+  <div class="actions">
+    <!-- Hochladen -->
+    <button
+      class="btn btn-primary"
+      (click)="uploadPicture()"
+      [disabled]="!selectedCoordinate || !selectedFile || caption.trim() === ''"
+    >
+      Bild hochladen
+    </button>
+  </div>
+
+  <!-- Base64 Bildanzeige -->
+  <div *ngIf="base64Image">
+    <h3>Bild:</h3>
+    <img [src]="'data:image/png;base64,' + base64Image" alt="Base64-Bild" />
+  </div>
+</div>

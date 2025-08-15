@@ -1,0 +1,109 @@
+/* Styling für die Navigationsleiste */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Sorgt dafür, dass der Inhalt gleichmäßig zwischen Logo, Suchleiste und Hamburger-Menü verteilt ist */
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, #004c99,#3C91B3);
+  color: #fff; /* Weißer Text */
+  position: fixed; /* Fixiert Navbar am oberen Rand */
+  width: 100%;
+  top: 0;
+  z-index: 1000; /* Hält die Navbar im Vordergrund */
+  height: 70px; /* Feste Höhe für Navbar */
+}
+
+/* Logo-Bereich */
+.navbar-logo {
+  margin-right: auto; /* Verschiebt das Logo nach links */
+  display: flex;
+  align-items: center; /* Vertikal zentrieren */
+}
+
+.navbar-logo img {
+  width: 50px;     /* Flexible Breite, basierend auf der Viewport-Breite */
+  height: 50px;     /* Die Höhe passt sich automatisch an, um das Seitenverhältnis zu wahren */
+  border-radius: 30%;
+  margin-right: 10px; /* Fügt etwas Abstand zur rechten Seite hinzu */
+}
+
+
+/* Suchleisten-Bereich */
+.navbar-search {
+  flex: 1; /* Die Suchleiste nimmt den verfügbaren Platz in der Mitte ein */
+  display: flex;
+  justify-content: center; /* Zentriert die Suchleiste */
+  align-items: center;
+  border-color: black;
+}
+
+.navbar-search input {
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  outline: none;
+
+}
+
+.navbar-search button {
+  padding: 5px;
+  border: none;
+  background-color: #3C91B3;
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.navbar-search button:hover {
+  background-color: #003f7f; /* Leichte Farbänderung beim Hover */
+}
+
+/* Hamburger Button */
+.navbar-toggle {
+  display: table-cell; /* Standardmäßig ausblenden */
+  font-size: 25px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Menü-Bereich */
+.navbar-menu {
+  list-style: none; /* Keine Aufzählungszeichen */
+  /*margin: 0;*/
+  /*padding: 0;*/
+  position: absolute; /* Dropdown-menu*/
+  top: 60px;
+  right: 20px;
+  background-color:#004c99; /* Hintergrund des Dropdown-Menüs */
+  padding: 10px;
+  border-radius: 5px;
+  width: auto; /* Breite des Dropdown-Menüs */
+}
+
+.navbar-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  margin: 10px 10px; /* Abstand zwischen den Links */
+  display: flex;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Schatten für die Menüeinträge */
+  border: 6px solid #004c99; ;
+  border-radius: 3px; /* Leicht abgerundete Ecken für die einzelnen Einträge */
+}
+
+.navbar-menu a {
+  text-decoration: none; /* Unterstreichung entfernen */
+  color: white; /* Textfarbe weiß */
+  transition: color 0.3s; /* notwendige Zeit, um Farbe zu wechseln*/
+  display: block; /* Damit der gesamte Bereich klickbar ist */
+}
+
+.navbar-menu a:hover {
+  color: #00d1ff ; /* Farbe ändern beim Hover */
+  /*background-color: #0066cc; !* Farbänderung bei Hover *!*/
+}
+
+

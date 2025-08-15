@@ -1,0 +1,62 @@
+<div class="table-wrapper">
+  <div class="search_wrapper">
+    <div class="search-container">
+      <form class="form-inline mb-4" (ngSubmit)="findUser(username)">
+        <div class="form-group mr-3">
+          <label for="username" class="sr-only"></label>
+          <input
+            [(ngModel)]="username"
+            id="username"
+            name="username"
+            type="text"
+            class="form-control custom-input"
+            placeholder="Benutzername eingeben"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-custom-primary mr-2">
+          Suche
+        </button>
+        <button type="button" (click)="reset()" class="btn btn-custom-secondary">
+          Reset
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="table-container">
+    <table class="styled-table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Benutzername</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">Nachname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Rolle</th>
+        <th scope="col">Geburtsdatum</th>
+        <th scope="col">Größe (cm)</th>
+        <th scope="col">Gewicht (kg)</th>
+        <th scope="col">Geschlecht</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>
+          <a href="javascript:void(0)" (click)="goToUserDetails(user.username)" class="username-link">
+            {{ user.username }}
+          </a>
+        </td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.birthDate | date: 'mediumDate' }}</td>
+        <td>{{ user.height }}</td>
+        <td>{{ user.weight }}</td>
+        <td>{{ user.gender }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

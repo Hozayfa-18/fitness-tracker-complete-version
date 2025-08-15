@@ -1,0 +1,124 @@
+<!--<div class="activity-list">-->
+<div class="container">
+  <h1>Ihre Aktivitäten</h1>
+
+  <!-- Fehleranzeige -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <!-- Nachricht bei leeren Aktivitäten -->
+  <div>
+    <div *ngIf="!activities.length && !error" class="empty-message">
+      <p>Sie haben noch keine Aktivitäten.</p>
+    </div>
+  </div>
+  <!-- Liste der Aktivitäten -->
+  <div *ngIf="activities.length > 0 && activities[0].totalDuration !== 0">
+    <!-- Search Input -->
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Suche nach Aktivitätsname..."
+      (input)="onSearch($event)">
+
+    <!-- Scroll Container -->
+    <div class="scroll-container">
+      <div>
+        <!-- Activity Table -->
+        <table id="activityTable">
+          <thead>
+          <tr>
+            <th (click)="toggleSort('id')">ID</th>
+            <th (click)="toggleSort('activityName')">Name</th>
+            <th (click)="toggleSort('activityType')">Type</th>
+            <th (click)="toggleSort('activityDate')">Datum</th>
+            <th (click)="toggleSort('totalDuration')">Dauer</th>
+            <th (click)="toggleSort('totalDistance')">Distanz</th>
+            <th (click)="toggleSort('totalElevationGain')">erklommene Höhe</th>
+            <th (click)="toggleSort('averageSpeed')">Durchschnitts- geschwindigkeit</th>
+            <th (click)="toggleSort('totalCalories')">verbrannte Kalorien</th>
+            <th (click)="toggleSort('likes')">Likes</th>
+            <th>Sichtbarkeit</th>
+            <th>Höhen-visualisierung</th>
+            <th>Karten-visualisierung</th>
+            <th>GPS-Foto hochladen</th>
+            <th>Kommentieren</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let activity of filteredActivities">
+            <td>{{ activity.id }}</td>
+            <td>{{ activity.activityName }}</td>
+            <td>{{ activity.activityType }}</td>
+            <td>{{ activity.activityDate! * 1000 | date: 'dd.MM.yyyy HH:mm' }}</td>
+            <td>{{ activity.totalDuration | number:'1.2-2'}}</td>
+            <td>{{ activity.totalDistance | number:'1.2-2'}}</td>
+            <td>{{ activity.totalElevationGain | number:'1.2-2'}}</td>
+            <td>{{ activity.averageSpeed | number:'1.2-2'}}</td>
+            <td>{{ activity.totalCalories | number:'1.2-2'}}</td>
+            <td>{{ activity.likeCount }}</td>
+           <!-- <td>
+              <button *ngIf="activity.id" (click)="toggleActivityVisibility(activity.id)">
+                {{ activity.visibility === 'PUBLIC' ? 'Öffentlich' : activity.visibility === 'FRIENDS' ? 'Nur Freunde' : 'Privat' }}
+              </button>
+            </td> -->
+            <td>
+              <span>{{ activity.visibility === 'PUBLIC' ? 'Öffentlich' : activity.visibility === 'FRIENDS' ? 'Nur Freunde' : 'Privat' }}</span>
+            </td>
+            <td>
+            <!-- Sicherstellen, dass activity.id definiert ist -->
+            <button *ngIf="activity.id" (click)="openElevationVisualization(activity.id)">Visualisieren</button>
+            </td>
+            <td>
+              <button *ngIf="activity.id" (click)="openActivityMap(activity.id)">Karte anzeigen</button>
+            </td>
+            <td>
+              <button *ngIf="activity.id" (click)="openActivityPicture(activity.id)">Foto hinzufügen</button>
+            </td>
+            <td>
+              <button (click)="toggleCommentSection(activity.id!)">Aktivität kommentieren</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bereich für Kommentare -->
+  <div *ngIf="selectedActivityId" class="comment-section">
+    <h3 class="comment-section-title">Kommentare für Aktivität {{ selectedActivityId }}</h3>
+
+    <!-- Fehlermeldung anzeigen, wenn die Aktivität privat ist und der Benutzer nicht berechtigt -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <textarea
+      class="comment-input"
+      [(ngModel)]="newComment"
+      placeholder="Schreiben Sie einen Kommentar...">
+  </textarea>
+    <button class="add-comment-button" (click)="addComment()">Kommentar hinzufügen</button>
+
+    <!-- Liste der Kommentare -->
+    <ul class="comment-list">
+      <li class="comment-item" *ngFor="let comment of comments">
+        <strong>{{ comment.username }}</strong>: {{ comment.content }}
+
+        <!-- Kommentar löschen nur anzeigen, wenn der Benutzer berechtigt ist -->
+        <button
+          class="delete-comment-button"
+          (click)="deleteComment(comment.id, selectedActivityId)">
+          Löschen
+        </button>
+
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,72 @@
+:root {
+  opacity: 0.8;
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  min-width: 600px;
+  max-height: 85vh;
+  margin: 60px auto;
+  padding: 20px;
+  background: linear-gradient(to right, #001f3f, #003f7f);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #e9f7ff;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.empty-message {
+  color: #666;
+  text-align: center;
+}
+
+#searchInput {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+table {
+  width: 100%;
+  border-color: #004c99;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 3px solid #004c99;
+}
+
+th {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+tr:hover {
+  background-color: #e9f7ff;
+}
+
+.scroll-container {
+  max-height: 500px;
+  overflow: auto;
+  border-radius: 5px;
+  padding: 10px;
+}

@@ -1,0 +1,115 @@
+<div class="chat-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h4>Kontakte</h4>
+    <ul class="contacts">
+      <ng-container *ngFor="let user of availableRecipients">
+        <li
+          *ngIf="user.username !== username"
+          [class.active]="user.username === chatWith"
+          (click)="selectRecipient(user.username!)">
+          {{ user.username }}
+        </li>
+      </ng-container>
+    </ul>
+
+    <!-- Groups Section -->
+    <h4>Gruppen</h4>
+    <ul class="contacts">
+      <li
+        *ngFor="let group of groups"
+        [class.active]="group.id === currentGroupId"
+        (click)="selectGroup(group.id)"
+      >
+        {{ group.name }}
+      </li>
+    </ul>
+
+    <!-- Button to Create Group -->
+    <button (click)="openGroupCreation()">Gruppe erstellen</button>
+  </div>
+
+  <!-- Chat Section -->
+  <div class="chat-section" *ngIf="chatWith || currentGroupId">
+    <div class="chat-header">
+      <h3>
+        <ng-container *ngIf="chatWith; else groupHeader">Chat Mit {{ chatWith }}</ng-container>
+        <ng-template #groupHeader>{{ getGroupName(currentGroupId) || '...' }}</ng-template>
+      </h3>
+    </div>
+
+    <div class="messages" #messagesContainer *ngIf="chatWith || currentGroupId">
+      <div *ngFor="let message of messages; let i = index"
+           [class.sent]="message.sender === currentUser"
+           [class.received]="message.sender !== currentUser"
+           (contextmenu)="message.sender === currentUser && !message.read ? onRightClick($event, i) : $event.preventDefault()"
+      >
+        <strong>
+          {{ message.sender === currentUser ? 'Du' : message.sender }}:
+        </strong>
+        {{ message.content }}
+      </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div
+      *ngIf="contextMenuVisible && !isRead"
+      class="context-menu"
+      [style.left.px]="contextMenuPosition.x"
+      [style.top.px]="contextMenuPosition.y"
+    >
+      <ul>
+        <li (click)="editMessage(contextMenuMessageIndex)">Bearbeiten</li>
+        <li (click)="deleteMessage(contextMenuMessageIndex)">Löschen</li>
+      </ul>
+    </div>
+
+    <div class="input-container">
+      <input
+        type="text"
+        [(ngModel)]="messageText"
+        placeholder="Type your message..."
+        [disabled]="!chatWith && !currentGroupId"
+        (keydown.enter)="currentGroupId ? sendGroupMessage() : sendMessage()"
+      />
+      <button (click)="currentGroupId ? sendGroupMessage() : sendMessage()" [disabled]="!chatWith && !currentGroupId">Senden</button>
+    </div>
+  </div>
+
+  <!-- Group Creation Modal -->
+  <div *ngIf="isCreatingGroup" class="modal-overlay">
+    <div>
+      <h3>Create Group</h3>
+      <form (submit)="createGroup()">
+        <label for="groupName">Gruppe Name:</label>
+        <input
+          id="groupName"
+          type="text"
+          [(ngModel)]="newGroupName"
+          name="groupName"
+        placeholder="Gruppen Name eingeben"
+        required
+        />
+
+        <label>Wählen Sie Mitglieder aus:</label>
+        <div class="members-list">
+          <label *ngFor="let user of availableRecipients">
+            <input
+              type="checkbox"
+              [value]="user.username"
+              [checked]="isMemberSelected(user.username!)"
+              (change)="toggleMemberSelection(user.username!, $event)"
+              name="selectedGroupMembers"
+            />
+            {{ user.username }}
+          </label>
+        </div>
+
+        <button type="submit">Erstellen</button>
+        <button type="button" (click)="closeGroupCreation()">Abbrechen</button>
+      </form>
+    </div>
+  </div>
+
+
+</div>

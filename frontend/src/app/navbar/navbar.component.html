@@ -1,0 +1,34 @@
+<header class="navbar">
+  <!-- App-Logo -->
+  <div class="navbar-logo">
+    <img src="assets/Bilder/SEP-Move_Logo_Minimalistic.png" alt="App Logo" />
+  </div>
+
+  <!-- Suchleiste -->
+<!--  <div class="navbar-search">-->
+<!--    <input type="text" placeholder="Suche..." />-->
+<!--    <button type="submit">🔍</button>-->
+<!--  </div>-->
+
+<!--   Hamburger Button für Toggle-Menü -->
+  <div class="navbar-toggle" (click)="toggleMenu()">
+    ☰ <!-- Das ist das Hamburger-Symbol -->
+  </div>
+
+  <!-- Navigationsmenü -->
+  <ul class="navbar-menu" *ngIf="menuOpen">
+    <ul>
+      <li><a routerLink="/homepage" (click)="closeMenu()">Startseite</a></li>
+      <li><a routerLink="/users" (click)="closeMenu()">Benutzerprofile</a></li>
+      <li><a routerLink = "/activitycreat" (click)="closeMenu()">Aktivität erstellen</a></li>
+      <li><a routerLink = "/activitylist" (click)="closeMenu()">Aktivitätenliste</a></li>
+      <li><a routerLink="/usersSearch" class="registration-button" (click)="closeMenu()">Teilnehmersuche</a></li>
+      <li><a routerLink="/freundesliste" (click)="closeMenu()">Freundesliste</a></li>
+      <li><a routerLink="/leaderboard" (click)="closeMenu()">Leaderboard</a></li>
+      <li><a routerLink="/chat" (click)="closeMenu()">Chat</a></li>
+      <li><a routerLink="/monthly-statistics" (click)="closeMenu()">Grafisches Aktivitätsprotokoll</a></li>
+      <li><a routerLink="/socialfeed" (click)="closeMenu()">Social Feed</a></li>
+
+    </ul>
+  </ul>
+</header>

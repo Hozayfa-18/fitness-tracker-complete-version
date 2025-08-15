@@ -1,0 +1,37 @@
+/* src/app/startseite/startseite.component.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.fitness-button {
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff; /* Blau für Fitness-Stil */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fitness-button:hover {
+  background-color: #0056b3; /* Dunkleres Blau bei Hover */
+}
+
+.fitness-button:active {
+  background-color: #003f7f; /* Noch dunkler bei Aktivierung */
+}

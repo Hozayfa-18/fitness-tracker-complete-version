@@ -1,0 +1,86 @@
+/* src/app/activity-list/activity-list.component.css */
+:root {
+  opacity: 0.8; /* Setzt die Transparenz unabhängig von der Farbe */
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  min-width: 600px;
+  max-height: 85vh;
+  margin: 60px auto;
+  padding: 20px;
+  /*background: linear-gradient(to bottom, #004c99,#3C91B3) ; !* Add background to make it more distinct *!*/
+  background: linear-gradient(to right, #001f3f, #003f7f);
+  /*background: linear-gradient(135deg, #001f3f, #0056b3);*/
+  border-radius: 10px; /* Round corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for emphasis */
+}
+
+h1 {
+  color: #e9f7ff; /* Setzt die Farbe auf reines Schwarz */
+  font-weight: bolder; /* Setzt den Text fett, um die Sichtbarkeit zu erhöhen */
+  text-align: center; /* Zentriert die Überschrift */
+  margin-bottom: 20px; /* Fügt Abstand zur Tabelle hinzu */
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.empty-message {
+  color: #666;
+  text-align: center;
+}
+
+#searchInput {
+  /*margin-bottom: 20px;*/
+  /*padding: 10px;*/
+  /*width: 100%;*/
+  /*box-sizing: border-box;*/
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px; /* Add rounded corners */
+  border: 1px solid #ccc;
+}
+
+/* Updated table styling */
+table {
+  width: 100%;
+  border-color: #004c99;
+  padding: 10px;
+  margin-bottom: 20px; /* Add space below the table */
+  background-color: rgba(255, 255, 255, 0.7); /* Weiß mit 80% Deckkraft */
+}
+
+th, td {
+  padding: 12px; /* Increased padding for better spacing */
+  text-align: center;
+  border: 3px solid #004c99;
+  /*border-right: 3px solid #;*/
+  /*border-bottom: 3px solid #004c99; !* Change border color for more contrast *!*/
+}
+
+th {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.7); /* Weiß mit 80% Deckkraft */
+}
+
+tr:hover {
+  background-color: #e9f7ff; /* Slightly darker hover effect for rows */
+}
+
+/* Scrollable container */
+.scroll-container {
+  max-height: 500px; /* Set maximum height */
+  overflow: auto; /* Allow scrolling within the container */
+  /*border: 1px solid #ddd; !* Add border to show boundaries *!*/
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Internal padding for aesthetics */
+
+
+}

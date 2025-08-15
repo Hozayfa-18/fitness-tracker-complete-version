@@ -1,0 +1,27 @@
+
+<!-- src/app/startseite/startseite.component.html -->
+<div class="container">
+  <div class="button-row">
+    <button class="fitness-button" (click)="onButtonClick('Aktivitäten')">Aktivitäten</button>
+    <!-- <button class="fitness-button" (click)="onButtonClick('GPXHochladen')">GPX-Datei hochladen</button>-->
+     <button class="fitness-button" (click)="onButtonClick('AktivitätErstellen')">Aktivität erstellen</button>
+    <button class="fitness-button" (click)="onButtonClick('monthly-statistics')">Grafisches Aktivitätsprotokoll</button>
+    <button class="fitness-button" (click)="onButtonClick('leaderboard')">Leaderboard</button>
+  </div>
+
+   <div class="button-row">
+     <button class="fitness-button" (click)="onButtonClick('Benutzerprofil')">Benutzerprofil</button>
+     <button class="fitness-button" (click)="onButtonClick('usersSearch')">Teilnehmersuche</button>
+     <button class="fitness-button" (click)="onButtonClick('Freundesliste')">Freundesliste</button>
+   </div>
+
+  <div class="button-row">
+    <button class="fitness-button" (click)="onButtonClick('socialfeed')">Social Feed</button>
+    <button class="fitness-button" (click)="onButtonClick('chat')">Chat</button>
+     </div>
+
+  <div>
+    <button class="fitness-button" (click)="onButtonClick('Logout')">Logout</button>
+  </div>
+ </div>
+

@@ -1,0 +1,89 @@
+<div class="container">
+  <div>
+    <h1>Aktivitäten erstellen</h1>
+
+<!--    Fehler-Anzeigen-->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  </div>
+
+  <form #activityForm="ngForm" (ngSubmit)="onSubmit(activityForm)">
+    <div class="activity-form">
+
+      <!-- Aktivitätsname -->
+      <div class="form-group">
+        <label for="activityName">Aktivitätsname:</label>
+        <input #activityName="ngModel" [(ngModel)]="activity.activityName"
+               id="activityName" name="activityName" placeholder="Name der Aktivität"
+               required type="text" />
+      </div>
+      <div *ngIf="activityName.invalid && activityName.touched" class="warnung">
+        Aktivitätsname ist erforderlich!
+      </div>
+
+      <!-- Aktivitätstyp -->
+      <div class="form-group">
+        <label for="activityType">Aktivitätstyp:</label>
+        <select #activityType="ngModel" [(ngModel)]="activity.activityType"
+                id="activityType" name="activityType" required>
+          <option value="" disabled selected>Wählen Sie einen Aktivitätstyp</option>
+          <option value="cycling">Radfahren</option>
+          <option value="running">Laufen</option>
+          <option value="hiking">Wandern</option>
+          <option value="walking">Spazierengehen</option>
+        </select>
+      </div>
+      <div *ngIf="activityType.invalid && activityType.touched" class="warnung">
+        Aktivitätstyp ist erforderlich!
+      </div>
+
+      <!-- Sichtbarkeit -->
+      <div class="form-group">
+        <label for="visibility">Sichtbarkeit:</label>
+        <select #visibility="ngModel" [(ngModel)]="activity.visibility"
+                id="visibility" name="visibility" required>
+          <option value="" disabled selected>Wählen Sie die Sichtbarkeit</option>
+          <option value="PUBLIC">Öffentlich</option>
+          <option value="FRIENDS">Nur Freunde</option>
+          <option value="PRIVATE">Privat</option>
+        </select>
+      </div>
+      <div *ngIf="visibility.invalid && visibility.touched" class="warnung">
+        Sichtbarkeit ist erforderlich!
+      </div>
+
+
+      <!-- Aktivitätsspur (GPX-Datei) -->
+      <div class="form-group">
+        <label for="activityData">GPX-Datei hochladen:</label>
+        <input #fileInput="ngModel" (change)="onFileSelected($event)"
+               type="file" id="activityData" name="activityData" required ngModel />
+      </div>
+      <div *ngIf="fileInput.invalid && fileInput.touched" class="warnung">
+        GPX-Datei ist erforderlich!
+      </div>
+
+      <!-- Absenden-Button -->
+      <button type="submit" class="submit-btn" [ngClass]="{'disabled': activityForm.invalid}" [disabled]="activityForm.invalid">
+        Aktivität erstellen
+      </button>
+
+      <!-- Erfolgs- und Fehlermeldungen -->
+      <div *ngIf="isUploading" class="loading-indicator">
+        <p style="text-align: center; color: white; background-color: #5cb85c; margin: 10px">
+          Laden...
+        </p>
+      </div>
+      <div *ngIf="uploadError" class="error-message">
+        <p style="text-align: center; color: white; background-color: crimson; margin: 10px">
+          Die ausgewählte Datei ist nicht im richtigen Format. Bitte laden Sie eine Datei im .gpx-Format hoch
+        </p>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+
+

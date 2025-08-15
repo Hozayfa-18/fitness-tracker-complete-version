@@ -1,0 +1,28 @@
+<div *ngFor="let user of users" class="modal" [ngClass]="{'hidden': !isOpen}">
+  <div class="modal-content">
+    <span class="close-button" (click)="closeModal()">&times;</span>
+    <h2>Profil bearbeiten</h2>
+    <form (ngSubmit)="onSubmit()">
+      <label for="firstname">Vorname:</label>
+      <input type="text" id="firstname" [(ngModel)]="firstName" name="firstname" required>
+
+      <label for="lastname">Last name:</label>
+      <input type="text" id="lastname" [(ngModel)]="lastName" name="lastname"  required>
+
+      <label *ngIf="user.role !== 'admin'" for="height">Größe:</label>
+      <input *ngIf="user.role !== 'admin'" type="number" id="height" [(ngModel)]="height" name="height" required>
+
+      <label *ngIf="user.role !== 'admin'" for="weight">Gewicht:</label>
+      <input *ngIf="user.role !== 'admin'" type="number" id="weight" [(ngModel)]="weight" name="weight" required>
+
+      <label *ngIf="user.role !== 'admin'" for="gender">Geschlecht:</label>
+      <select *ngIf="user.role !== 'admin'" id="gender" [(ngModel)]="gender" name="gender" required>
+        <option value="male">Männlich</option>
+        <option value="female">Weiblich</option>
+        <option value="other">Andere</option>
+      </select>
+
+      <button type="submit" class="save-button">Änderungen speichern</button>
+    </form>
+  </div>
+</div>

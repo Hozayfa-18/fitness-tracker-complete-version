@@ -1,0 +1,95 @@
+<div class="profile-wrapper">
+  <app-edit-profile></app-edit-profile>
+  <div class="profile-container">
+    <div *ngFor="let user of users" class="profile-container">
+      <div class="cover-photo">
+        <img
+          [src]="profileImageUrl || './assets/Bilder/SEP-Move_Logo_Minimalistic.png'"
+          alt="Cover Photo"
+          (error)="profileImageUrl='./assets/Bilder/SEP-Move_Logo_Minimalistic.png'">
+      </div>
+      <div class="profile-header">
+        <img
+          [src]="profileImageUrl || './assets/Bilder/SEP-Move_Logo_Minimalistic.png'"
+          alt="Profilbild"
+          class="profile-picture"
+          (error)="profileImageUrl='./assets/Bilder/SEP-Move_Logo_Minimalistic.png'" />
+
+        <div class="profile-info">
+          <h1 class="username">{{ user.username }}</h1>
+          <button class="edit-button" (click)="openEditModal()">Profil bearbeiten</button>
+
+        </div>
+      </div>
+      <div class="profile-details">
+        <section class="bio-section">
+          <h2>Name</h2>
+          <p class="bio">{{ user.firstName }} {{ user.lastName }}</p>
+        </section>
+        <section class="info-section">
+          <h2>Information</h2>
+          <ul class="info-list">
+            <li><strong>Email:</strong> {{ user.email }}</li>
+            <li><strong>Role:</strong> {{ user.role }}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Größe:</strong> {{ user.height }}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Gewicht:</strong> {{ user.weight }}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Geschlecht:</strong> {{ user.gender}}</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Geburtsdatum:</strong> {{ user.birthDate | date:'dd.MM.y' }}</li>
+          </ul>
+          <br>
+          <h2 *ngIf="user.role !== 'admin'">Activities Summary</h2>
+          <ul class="info-list">
+            <li *ngIf="user.role !== 'admin'"><strong>Aktivitäten Anzahl:</strong> {{ activitiesCount }} activities</li>
+            <li *ngIf="user.role !== 'admin'"><strong>Aktivitäten Gesamtdauer:</strong> {{ totalDurationInHours | number:'1.2-2'}} <span *ngIf="totalDurationInHours">hours</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Aktivitäten Gesamtdistanz:</strong> {{ totalDistanceInKm | number:'1.2-2'}} <span *ngIf="totalDistanceInKm">km</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Insgesamt verbrannte Kalorien:</strong> {{ totalCaloriesInK | number:'1.2-2'}} <span *ngIf="totalCaloriesInK">kcal</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Gesamthöhengewinn:</strong> {{ totalElevationGainInM | number:'1.2-2'}} <span *ngIf="totalElevationGainInM">meters</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Durchschnittsgeschwindigkeit:</strong> {{ averageSpeedInKmh | number:'1.2-2'}} <span *ngIf="averageSpeedInKmh">km/h</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Maximale Durchschnittsgeschwindigkeit:</strong> {{ maxAverageSpeedInKmh | number:'1.2-2'}} <span *ngIf="maxAverageSpeedInKmh">km/h</span></li>
+            <li *ngIf="user.role !== 'admin'"><strong>Gesamtanzahl Likes:</strong> {{ totalLikes}} <span *ngIf="totalLikes">Likes</span></li>
+          </ul>
+        </section>
+      </div>
+      <div class="button-container">
+        <button *ngIf="user.role !== 'admin'" class="create-activity-button" (click)="createActivity()">Aktivitäten erstellen</button>
+      </div>
+
+      <div *ngIf="user.role !== 'admin'" class="container">
+        <h1>Ihre Aktivitäten</h1>
+
+        <!-- Fehleranzeige -->
+        <div *ngIf="error" class="error-message">
+          {{ error }}
+        </div>
+
+        <!-- Nachricht bei leeren Aktivitäten -->
+        <div *ngIf="!activities.length && !error" class="empty-message">
+          <p>Sie haben noch keine Aktivitäten.</p>
+        </div>
+
+        <!-- Liste der Aktivitäten -->
+        <app-activity-list></app-activity-list>
+
+      </div>
+
+      <section class="friends-list-section">
+        <h2 class="friends-list-title">Freundesliste</h2>
+        <ul class="friends-list">
+          <li class="friend-item" *ngFor="let friend of freundesliste">
+            {{ friend.username }}
+          </li>
+        </ul>
+        <p class="no-friends-message" *ngIf="freundesliste.length === 0">Keine Freunde</p>
+      </section>
+
+      <div>
+        <app-activity-achievement></app-activity-achievement>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+

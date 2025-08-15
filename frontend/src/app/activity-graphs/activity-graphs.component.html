@@ -1,0 +1,27 @@
+<div class="container">
+  <h2 *ngIf="!isAdmin && username">Grafisches Aktivitätsprotokoll für {{ selectedYear }}</h2>
+  <h2 *ngIf="isAdmin && username">Grafisches Aktivitätsprotokoll</h2>
+
+  <div *ngIf="!username" class="info-message warning">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="isAdmin && username" class="info-message warning">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!isAdmin && username">
+    <div class="selection">
+      <label for="year">Jahr auswählen:</label>
+      <select id="year" [(ngModel)]="selectedYear" (change)="loadStatistics()">
+        <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+      </select>
+    </div>
+
+    <div class="charts-container">
+      <div *ngFor="let stat of statisticKeys" class="chart-item">
+        <canvas [id]="stat.key"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="two-factor-auth-container">
+  <h2>Zwei-Faktor-Authentifizierung</h2>
+  <form (ngSubmit)="onSubmit()" #twoFactorForm="ngForm">
+
+
+    <div class="form-group">
+      <label for="username">Benutzername:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        #usernameInput="ngModel"
+        (input)="clearMessages()"
+      />
+      <div *ngIf="usernameInput.invalid && usernameInput.touched">
+        Benutzername ist erforderlich.
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="authCode">Bestätigungscode:</label>
+      <input
+        type="text"
+        id="authCode"
+        name="authCode"
+        [(ngModel)]="authCode"
+        required
+        minlength="6"
+        maxlength="6"
+        #authCodeInput="ngModel"
+        (input)="clearMessages()"
+      />
+      <div *ngIf="authCodeInput.invalid && authCodeInput.touched">
+        Der Bestätigungscode muss genau 6 Zeichen lang sein.
+      </div>
+
+
+      <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+      </div>
+</div>
+
+
+    <button type="submit" [disabled]="twoFactorForm.invalid">
+      Bestätigen
+    </button>
+  </form>
+</div>

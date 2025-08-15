@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>Leaderboard</h1>
+
+  <!-- Fehleranzeige -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <!-- Liste der Leaderboard -->
+  <div *ngIf="usercount > 0">
+
+    <!-- Scroll Container -->
+    <div class="scroll-container">
+      <div>
+        <!-- Leaderboard Table -->
+        <table id="leaderboardTable">
+          <thead>
+          <tr>
+            <th (click)="toggleSort('username')">Name</th>
+            <th (click)="toggleSort('activityCount')">Ges. Aktivitäten</th>
+            <th (click)="toggleSort('totalDuration')">Ges. Dauer (std)</th>
+            <th (click)="toggleSort('totalDistance')">Ges.Distanz (km)</th>
+            <th (click)="toggleSort('totalCalories')">Ges. verbrannte Kalorien (kcl)</th>
+            <th (click)="toggleSort('totalElevationGain')">Ges. erklommene Höhe (m)</th>
+            <th (click)="toggleSort('avgSpeed')">Ges. Durchschnitts- geschwindigkeit (km/h)</th>
+            <th (click)="toggleSort('maxSpeed')">Ges. Höchst- geschwindigkeit (km/h)</th>
+            <th (click)="toggleSort('totalLikes')">Ges. Anzahl der Likes</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let leaderboard of filteredLeaderboards">
+            <td>{{ leaderboard.username }}</td>
+            <td>{{ leaderboard.activityCount }}</td>
+            <td>{{ leaderboard.totalDuration | number:'1.2-2'}}</td>
+            <td>{{ leaderboard.totalDistance | number:'1.2-2'}}</td>
+            <td>{{ leaderboard.totalCalories | number:'1.2-2'}}</td>
+            <td>{{ leaderboard.totalElevationGain | number:'1.2-2'}}</td>
+            <td>{{ leaderboard.avgSpeed | number:'1.2-2'}}</td>
+            <td>{{ leaderboard.maxSpeed | number:'1.2-2'}}</td>
+            <td>{{ leaderboard.totalLikes }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

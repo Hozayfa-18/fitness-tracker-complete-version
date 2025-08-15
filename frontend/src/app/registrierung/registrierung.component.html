@@ -1,0 +1,158 @@
+<div class="register-container">
+  <h2>Registrierung</h2>
+  <form (ngSubmit)="onSubmit(registrationForm)" #registrationForm="ngForm">
+
+    <div class="form-group">
+      <label for="role">Rolle:</label>
+      <select
+        id="role"
+        name="role"
+        [(ngModel)]="selectedRole"
+        required
+        #role="ngModel"
+      >
+        <option value="" disabled selected>Wählen Sie eine Rolle aus</option>
+        <option value="user">Normaler Benutzer</option>
+        <option value="admin">Admin</option>
+      </select>
+      <div
+        *ngIf="(role.invalid || !selectedRole) && registrationForm.submitted"
+        class="error-message"
+      >
+        Bitte wählen Sie eine Rolle für die Registrierung aus.
+      </div>
+    </div>
+
+    <!-- Gemeinsame Felder -->
+    <div class="form-group">
+      <label for="username">Benutzername:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        ngModel
+        required
+        #username="ngModel"
+      />
+      <div *ngIf="username.invalid && username.touched" class="error-message">
+        Benutzername ist erforderlich.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">Vorname:</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        ngModel
+        required
+        #firstName="ngModel"
+      />
+      <div
+        *ngIf="firstName.invalid && firstName.touched"
+        class="error-message"
+      >
+        Vorname ist erforderlich.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Nachname:</label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        ngModel
+        required
+        #lastName="ngModel"
+      />
+      <div *ngIf="lastName.invalid && lastName.touched" class="error-message">
+        Nachname ist erforderlich.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-Mail:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        ngModel
+        required
+        email
+        #email="ngModel"
+      />
+      <div *ngIf="email.invalid && email.touched" class="error-message">
+        Eine gültige E-Mail-Adresse ist erforderlich.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Passwort:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        ngModel
+        required
+        minlength="6"
+        #password="ngModel"
+      />
+      <div *ngIf="password.invalid && password.touched" class="error-message">
+        Passwort muss mindestens 6 Zeichen lang sein.
+      </div>
+    </div>
+
+    <!-- Zusätzliche Felder für Benutzer -->
+    <div *ngIf="selectedRole === 'user'">
+      <div class="form-group">
+        <label for="birthDate">Geburtsdatum:</label>
+        <input type="date" id="birthDate" name="birthDate" ngModel />
+      </div>
+
+      <div class="form-group">
+        <label for="height">Körpergröße (cm):</label>
+        <input type="number" id="height" name="height" ngModel />
+      </div>
+
+      <div class="form-group">
+        <label for="weight">Gewicht (kg):</label>
+        <input type="number" id="weight" name="weight" ngModel />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Geschlecht:</label>
+        <select id="gender" name="gender" ngModel>
+          <option value="male">Männlich</option>
+          <option value="female">Weiblich</option>
+          <option value="other">Andere</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Optionales Profilbild -->
+    <div class="form-group">
+      <label for="profilePicture">Profilbild (optional):</label>
+      <input
+        type="file"
+        id="profilePicture"
+        name="profilePicture"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+      <small class="info-message">Unterstützte Formate: JPG, PNG</small>
+    </div>
+
+    <!-- Button-Logik -->
+    <button type="submit" [disabled]="!isFormValid(registrationForm)">
+      Registrieren
+    </button>
+
+
+    <!-- Fehlernachricht -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>

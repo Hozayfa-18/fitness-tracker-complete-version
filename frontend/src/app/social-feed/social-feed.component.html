@@ -1,0 +1,130 @@
+<div class="feed-container" *ngIf="!loading; else loadingTemplate">
+  <div *ngIf="activities.length > 0; else noActivitiesTemplate">
+      <div *ngFor="let activity of activities" class="activity-card" [ngClass]="{'public': activity.visibility === 'PUBLIC',
+                   'friends-only': activity.visibility === 'FRIENDS',
+                   'private': activity.visibility === 'PRIVATE'}">
+      <!-- Header: User Info -->
+      <div class="card-header">
+        <img
+          [src]="'data:image/jpeg;base64,' + activity.user?.pic_byte"
+          alt="{{ activity.username }}"
+          class="profile-pic"
+        />
+        <div class="user-info">
+          <p class="username">&#64;{{ activity.username }}</p>
+          <span class="activity-date">{{ activity.activityDate! * 1000 | date: 'dd.MM.yyyy HH:mm' }}</span>
+          <br>
+          <span class="activity-visibility">{{ activity.visibility === 'PUBLIC' ? 'Öffentlich' : activity.visibility === 'FRIENDS' ? 'Nur Freunde' : 'Privat' }}</span>
+        </div>
+      </div>
+
+      <!-- Activity Section -->
+      <div class="activity-content">
+        <h2>{{ getActivityIcon(activity.activityType || '') }} {{ activity.activityName }}</h2>
+        <p class="activity-type">{{ activity.activityType }}</p>
+        <p>{{ activity.timestamps ? 'Activity has GPS tracking data.' : '' }}</p>
+      </div>
+
+      <!-- Statistics Section -->
+      <div class="activity-stats">
+        <div class="stat-item">
+          <h4>Distanz</h4>
+          <p>{{ activity.totalDistance | number: '1.1-1' }} m</p>
+        </div>
+        <div class="stat-item">
+          <h4>Dauer</h4>
+          <p>{{ activity.totalDuration }} min</p>
+        </div>
+        <div class="stat-item">
+          <h4>Geschwind.</h4>
+          <p>{{ activity.averageSpeed | number: '1.1-1' }} km/h</p>
+        </div>
+        <div class="stat-item">
+          <h4>Kalorien</h4>
+          <p>{{ activity.totalCalories | number: '1.1-1' }} kcal</p>
+        </div>
+        <div class="stat-item">
+          <h4>Höhengewinn</h4>
+          <p>{{ activity.totalElevationGain | number: '1.1-1' }} m</p>
+        </div>
+      </div>
+
+        <!-- Visualizations Section -->
+        <div class="activity-visualization">
+          <button *ngIf="activity.id" (click)="openElevationVisualization(activity.id)">Höhen-visualisierung</button>
+          <button *ngIf="activity.id" (click)="openActivityMap(activity.id)">Karte anzeigen</button>
+        </div>
+        <!-- Actions Section -->
+
+        <!--
+        <div class="activity-actions" *ngIf="activity.username !== loggedInUsername">
+          <button *ngIf="!activity.isLiked" (click)="likeActivity(activity)">Like</button>
+          <button *ngIf="activity.isLiked" (click)="unlikeActivity(activity)">Unlike</button>
+          <span>{{ activity.likeCount }} Likes</span>
+        </div>
+        -->
+        <div class="activity-actions">
+          <!-- Like-Anzahl wird immer angezeigt -->
+          <span>{{ activity.likeCount }} Likes</span>
+
+          <div *ngIf="activity.username === loggedInUsername">
+            <span> - Du kannst deine eigene Aktivität nicht liken.</span>
+          </div>
+
+          <!-- Buttons nur anzeigen, wenn der Benutzer nicht der Besitzer ist -->
+          <div *ngIf="activity.username !== loggedInUsername">
+            <button *ngIf="!activity.isLiked" (click)="likeActivity(activity)">Like</button>
+            <button *ngIf="activity.isLiked" (click)="unlikeActivity(activity)">Unlike</button>
+          </div>
+        </div>
+
+
+        <!-- Kommentar Button -->
+        <div class="comment-button-section">
+          <button class="comment-button" (click)="toggleCommentSection(activity.id!)">
+            Kommentieren
+          </button>
+        </div>
+
+        <!-- Bereich für Kommentare -->
+        <div *ngIf="selectedActivityId === activity.id" class="comment-section">
+          <h3 class="comment-section-title">Kommentare für Aktivität {{ activity.activityName }}</h3>
+
+          <!-- Fehlermeldung anzeigen -->
+          <div *ngIf="error" class="error-message-comment">
+            {{ error }}
+          </div>
+
+          <!-- Kommentar hinzufügen -->
+          <textarea
+            class="comment-input"
+            [(ngModel)]="newComment"
+            placeholder="Schreiben Sie einen Kommentar...">
+        </textarea>
+          <button class="add-comment-button" (click)="addComment()">Kommentar hinzufügen</button>
+
+          <!-- Liste der Kommentare -->
+          <ul class="comment-list">
+            <li class="comment-item" *ngFor="let comment of comments">
+              <strong>{{ comment.username }}</strong>
+              <span>: {{ comment.content }}</span>
+
+              <!-- Kommentar löschen -->
+              <button class="delete-comment-button" (click)="deleteComment(comment.id, selectedActivityId)">
+                Löschen
+              </button>
+            </li>
+          </ul>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <p>Loading activities...</p>
+</ng-template>
+
+<ng-template #noActivitiesTemplate>
+  <p>No activities to display.</p>
+</ng-template>

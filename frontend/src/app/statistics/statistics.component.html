@@ -1,0 +1,35 @@
+<div *ngIf="activity" class="statistik-container">
+  <h2>Aktivitätsstatistiken:</h2>
+  <div class="stat-box">
+    <label>Aktivität: </label>
+    <span>{{ activity.activityName }}</span>
+  </div>
+  <div class="stat-box">
+    <label>Datum und Uhrzeit: </label>
+    <span>{{ activity.activityDate! * 1000 | date: 'dd.MM.yyyy HH:mm' }}</span>
+  </div>
+  <div class="stat-box">
+    <label>Gesamtdauer: </label>
+    <span>{{ activity.totalDuration | number:'1.2-2'}} Sekunden</span>
+  </div>
+  <div class="stat-box">
+    <label>Gesamtdistanz: </label>
+    <span>{{ activity.totalDistance | number:'1.2-2'}} Meter</span>
+  </div>
+  <div class="stat-box">
+    <label>Gesamter Höhengewinn: </label>
+    <span>{{ activity.totalElevationGain | number:'1.2-2'}} Meter</span>
+  </div>
+  <div class="stat-box">
+    <label>Durchschnittsgeschwindigkeit: </label>
+    <span>{{ activity.averageSpeed | number:'1.2-2'}} km/h</span>
+  </div>
+  <div class="stat-box">
+    <label>Gesamtverbrauchte Kalorien: </label>
+    <span>{{ activity.totalCalories | number:'1.2-2' }} kcal</span>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+

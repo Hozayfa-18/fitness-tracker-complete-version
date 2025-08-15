@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Erfolge 🏆</h1>
+
+  <!-- Fehleranzeige -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+<!--  🚶, 🏃‍, 🗻, 🚴‍♂️, 🥇️, 🥈, 🥉-->
+
+  <div *ngIf="!error">
+    <ul>
+      <h3>Spazieren </h3>
+      <li>
+        <button [ngClass]="firstLevelWalking ? 'first-level' : 'not-achieved' ">2 km erreicht 🥉 ️</button>
+        <button [ngClass]="secondLevelWalking ? 'second-level' : 'not-achieved' ">5 km erreicht 🥈</button>
+        <button [ngClass]="thirdLevelWalking ? 'third-level' : 'not-achieved' ">100 km insgesamt 🥇️</button>
+      </li>
+    </ul>
+    <ul>
+      <h3>Laufen </h3>
+      <li>
+        <button [ngClass]="firstLevelRunning ? 'first-level' : 'not-achieved' ">5 km erreicht 🥉</button>
+        <button [ngClass]="secondLevelRunning ? 'second-level' : 'not-achieved' ">10 km erreicht 🥈</button>
+        <button [ngClass]="thirdLevelRunning ? 'third-level' : 'not-achieved' ">50 km insgesamt 🥇️</button>
+      </li>
+    </ul>
+    <ul>
+      <h3>Wandern </h3>
+      <li>
+        <button [ngClass]="firstLevelHiking ? 'first-level' : 'not-achieved' ">10 km erreicht 🥉</button>
+        <button [ngClass]="secondLevelHiking ? 'second-level' : 'not-achieved' ">20 km erreicht 🥈</button>
+        <button [ngClass]="thirdLevelHiking ? 'third-level' : 'not-achieved' ">100 km insgesamt 🥇️</button>
+      </li>
+    </ul>
+    <ul>
+      <h3>Radfahren </h3>
+      <li>
+        <button [ngClass]="firstLevelCycling ? 'first-level' : 'not-achieved' ">50 km erreicht 🥉</button>
+        <button [ngClass]="secondLevelCycling ? 'second-level' : 'not-achieved' ">100 km erreicht 🥈</button>
+        <button [ngClass]="thirdLevelCycling ? 'third-level' : 'not-achieved' ">500 km insgesamt 🥇️</button>
+      </li>
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="header">
+    <h1>Freunde</h1>
+  </div>
+
+  <div class="content">
+    <!-- Benutzersuche -->
+    <div class="search">
+      <label for="username">Benutzername suchen:</label>
+      <input type="text" id="username" [(ngModel)]="benutzerSuche" (ngModelChange)="searchUser(); clearMessage() " placeholder="Benutzernamen eingeben" />
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+      <ul *ngIf="gefundeneBenutzer.length > 0">
+        <li *ngFor="let user of gefundeneBenutzer">
+          <span *ngIf="user">{{ user.username }}</span>
+          <button *ngIf="user && user.username" (click)="sendFriendshipRequest(user.username)">Freundschaftsanfrage senden</button>
+        </li>
+      </ul>
+      <p *ngIf="gefundeneBenutzer.length === 0 && benutzerSuche">Keine Benutzer gefunden.</p>
+    </div>
+
+    <div class="column requests">
+      <h2>Freundschaftsanfragen</h2>
+      <ul *ngIf="freundschaftsanfragen.length > 0; else noRequests">
+        <li *ngFor="let request of freundschaftsanfragen">
+          <span>{{ request.sender?.username }}</span>
+          <div class="actions">
+            <button (click)="anfrageAnnehmen(request)">Annehmen</button>
+            <button (click)="anfrageAblehnen(request)">Ablehnen</button>
+          </div>
+        </li>
+      </ul>
+      <ng-template #noRequests>
+        <p>Keine Freundschaftsanfragen.</p>
+      </ng-template>
+    </div>
+
+
+    <div class="column friends">
+      <h2>Freundesliste</h2>
+      <div class="visibility-toggle">
+        <button (click)="toggleVisibility()">
+          {{ sichtbarkeit ? 'Privat machen' : 'Öffentlich machen' }}
+        </button>
+      </div>
+      <!-- Sichtbarkeitsstatus anzeigen -->
+      <div *ngIf="sichtbarkeit !== undefined">
+        <p>Deine Freundesliste ist aktuell {{ sichtbarkeit ? 'öffentlich' : 'privat' }}.</p>
+      </div>
+      <ul *ngIf="freundesliste.length > 0; else noFriends">
+        <li *ngFor="let friend of freundesliste">
+          <a (click)="goToProfile(friend.username)" class="friend-link">{{ friend.username }}</a>
+          <div class="actions">
+            <button (click)="freundEntfernen(friend)">Entfernen</button>
+          </div>
+        </li>
+      </ul>
+      <ng-template #noFriends>
+        <p>Keine Freunde in der Liste.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
